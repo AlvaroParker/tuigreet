@@ -1,0 +1,13 @@
+[files]
+ignore-files = true
+ignore-hidden = false
+extend-exclude = [
+    ".git/",
+    "contrib/",
+]
+
+[default]
+extend-ignore-re = [
+    '[R|r]atatui',
+]
+check-filename = true

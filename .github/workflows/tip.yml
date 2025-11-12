@@ -14,8 +14,8 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - name: Lint
         run: |
-          cargo clippy -- -D warnings
-          cargo clippy --release -- -D warnings
+          cargo clippy --all-targets --all-features -- --deny warnings
+          cargo clippy --release --all-targets --all-features -- --deny warnings
 
   test:
     runs-on: ubuntu-latest
@@ -40,7 +40,12 @@ jobs:
     strategy:
       matrix:
         arch:
-          - { name: "x86_64", os: "ubuntu-latest", target: "x86_64-unknown-linux-gnu", cross: false }
+          - {
+              name: "x86_64",
+              os: "ubuntu-latest",
+              target: "x86_64-unknown-linux-gnu",
+              cross: false,
+            }
     runs-on: ${{ matrix.arch.os }}
     steps:
       - uses: actions/checkout@v4
